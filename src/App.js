@@ -6,11 +6,12 @@ import thunk from 'redux-thunk';
 import {createStore, applyMiddleware} from 'redux';
 import reducer from './reducers/mainReducer';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import './App.css';
 
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 class App extends Component {
 

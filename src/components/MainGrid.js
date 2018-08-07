@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import Grid from '@material-ui/core/Table';
 import {connect} from 'react-redux';
 import MainTable from './MainTable';
-import {GET_DATA} from "../action/actionType";
+import {getData} from "../action/action";
+import Spinner from "./Spinner.js";
 import {withStyles} from '@material-ui/core/styles';
 
 
 const styles = theme => ({
     root: {
-        width: '70%'
+        width: '80%',
+        margin: '0 auto'
     }
 
 });
@@ -20,10 +22,10 @@ class MainGrid extends Component {
 
     render() {
         const {classes, loadData} = this.props;
-        console.log(loadData);
         if (loadData) return (
             <Grid container={true} md={12} className={classes.root} justify="center">
                 <Grid item>
+                   <Spinner/>
                 </Grid>
             </Grid>
         );
@@ -47,7 +49,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         // onDelete: id => dispatch(deleteTodo(id)),
-        load: () => dispatch({type: GET_DATA})
+        load: () => dispatch(getData())
     }
 
 };
